@@ -1,8 +1,5 @@
-import unittest, time, os
+import unittest, time
 from appium import webdriver
-from appium.webdriver.common.appiumby import AppiumBy
-from appium.webdriver.common.touch_action import TouchAction
-from selenium.webdriver.common.by import By
 
 
 class MyTestCase(unittest.TestCase):
@@ -19,16 +16,22 @@ class MyTestCase(unittest.TestCase):
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
     def test_app_budget_add(self):
-        self.driver.implicitly_wait(50)
-        #time.sleep(5)
+        time.sleep(5)
         budget = self.driver.find_element_by_id('protect.budgetwatch:id/menu')
         budget.click()
-        self.driver.implicitly_wait(50)
+        time.sleep(5)
         add_budget = self.driver.find_element_by_id('protect.budgetwatch:id/action_add')
         add_budget.click()
-        self.driver.implicitly_wait(50)
+        time.sleep(5)
         type_budget = self.driver.find_element_by_id('protect.budgetwatch:id/budgetName')
         type_budget.send_keys('supermarket')
+        time.sleep(5)
+        value_budget = self.driver.find_element_by_id('protect.budgetwatch:id/value')
+        value_budget.send_keys(600)
+        time.sleep(5)
+        save_budget = self.driver.find_element_by_id('protect.budgetwatch:id/saveButton')
+        save_budget.click()
+        time.sleep(5)
 
 if __name__ == '__main__':
     unittest.main()
