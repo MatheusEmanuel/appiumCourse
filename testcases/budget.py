@@ -1,5 +1,7 @@
 import unittest, time
 from appium import webdriver
+from appium.webdriver.common.appiumby import AppiumBy
+from appium.webdriver.common.touch_action import TouchAction
 
 
 class MyTestCase(unittest.TestCase):
@@ -32,6 +34,30 @@ class MyTestCase(unittest.TestCase):
         save_budget = self.driver.find_element_by_id('protect.budgetwatch:id/saveButton')
         save_budget.click()
         time.sleep(5)
+
+    def test_app_budget_edit(self):
+        self.test_app_budget_add()
+        action = TouchAction(self.driver)
+
+        item = self.driver.find_element(AppiumBy.XPATH,"//android.widget.TextView[contains(@text, 'supermarket')]")
+        action.long_press(item)
+        action.perform()
+
+        editmenu = self.driver.find_element(AppiumBy.XPATH, "//android.widget.TextView[contains(@text, 'Edit')]")
+        editmenu.click()
+
+        edit = self.driver.find_element(AppiumBy.ID, 'protect.budgetwatch:id/action_edit')
+        edit.click()
+
+        self.driver.implicitly_wait(30)
+        time.sleep(5)
+        value_budget = self.driver.find_element(AppiumBy.ID, "protect.budgetwatch:id/value")
+        value_budget.clear()
+        value_budget.send_keys("400")
+        time.sleep(5)
+        salve_button = self.driver.find_element(AppiumBy.ID, "protect.budgetwatch:id/saveButton")
+        salve_button.click()
+
 
 if __name__ == '__main__':
     unittest.main()
