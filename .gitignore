@@ -254,3 +254,4 @@ cython_debug/
 .env
 *.pyc
 *.mp3
+*.html
