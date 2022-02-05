@@ -116,7 +116,6 @@ class MyTestCase(unittest.TestCase):
         quality = self.driver.find_element(AppiumBy.XPATH,"//android.widget.CheckedTextView[contains(@text, '100')]")
         quality.click()
         time.sleep(2)
-        # change_quality = self.driver.find_element_by_id("android:id/title")
         change_quality = self.driver.find_element(AppiumBy.ID,"android:id/title")
         change_quality.click()
         time.sleep(2)
