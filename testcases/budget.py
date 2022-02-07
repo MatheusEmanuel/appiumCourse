@@ -12,7 +12,7 @@ class MyTestCase(unittest.TestCase):
         desired_caps['deviceName'] = '192.168.73.103:5555'
         desired_caps['appPackage'] = 'protect.budgetwatch'
         desired_caps['appActivity'] = '.MainActivity'
-        # desired_caps['autoGrantPermissions'] = 'true'
+        desired_caps['autoGrantPermissions'] = 'true'
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
     def test_app_budget_add(self):
@@ -105,15 +105,6 @@ class MyTestCase(unittest.TestCase):
         capture = self.driver.find_element(AppiumBy.ID,'protect.budgetwatch:id/captureButton')
         capture.click()
         time.sleep(2)
-        allow_perm = self.driver.find_element(AppiumBy.ID,'com.android.permissioncontroller:id/permission_allow_button')
-        allow_perm.click()
-        time.sleep(2)
-        # allow_cam = self.driver.find_element_by_id('com.android.permissioncontroller:id/permission_allow_always_button')
-        # allow_cam.click()
-        # time.sleep(2)
-        # allow_loc = self.driver.find_element_by_id('com.android.camera2:id/confirm_button')
-        # allow_loc.click()
-        # time.sleep(2)
         capture_Cam = self.driver.find_element(AppiumBy.ID,'com.android.camera2:id/shutter_button')
         capture_Cam.click()
         time.sleep(2)
