@@ -12,6 +12,7 @@ class MyTestCase(unittest.TestCase):
         desired_caps['deviceName'] = '192.168.73.103:5555'
         desired_caps['appPackage'] = 'protect.budgetwatch'
         desired_caps['appActivity'] = '.MainActivity'
+        # desired_caps['autoGrantPermissions'] = 'true'
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
     def test_app_budget_add(self):
@@ -31,6 +32,7 @@ class MyTestCase(unittest.TestCase):
         save_budget = self.driver.find_element(AppiumBy.ID,'protect.budgetwatch:id/saveButton')
         save_budget.click()
         time.sleep(2)
+        self.assertEqual('supermarket', self.driver.find_element(AppiumBy.ID,"protect.budgetwatch:id/budgetName").get_attribute('text'))
 
     def test_app_budget_edit(self):
         self.test_app_budget_add()
@@ -53,6 +55,26 @@ class MyTestCase(unittest.TestCase):
         time.sleep(2)
         salve_button = self.driver.find_element(AppiumBy.ID, "protect.budgetwatch:id/saveButton")
         salve_button.click()
+
+    def test_app_budget_delete(self):
+        self.test_app_budget_add()
+        time.sleep(2)
+        action = TouchAction(self.driver)
+        item = self.driver.find_element(AppiumBy.XPATH,"//android.widget.TextView[contains(@text, 'supermarket')]")
+        action.long_press(item)
+        action.perform()
+        time.sleep(2)
+        editmenu = self.driver.find_element(AppiumBy.XPATH, "//android.widget.TextView[contains(@text, 'Edit')]")
+        editmenu.click()
+        time.sleep(2)
+        edit = self.driver.find_element(AppiumBy.ID, 'protect.budgetwatch:id/action_edit')
+        edit.click()
+        time.sleep(2)
+        delete = self.driver.find_element(AppiumBy.ID, 'protect.budgetwatch:id/action_delete')
+        delete.click()
+        time.sleep(2)
+        confirm_Delete = self.driver.find_element(AppiumBy.XPATH, "//android.widget.Button[contains(@text, 'CONFIRM')]")
+        confirm_Delete.click()
 
     def test_app_budget_add_transaction(self):
         self.test_app_budget_add()
