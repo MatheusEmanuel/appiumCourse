@@ -10,7 +10,7 @@ class MyTestCase(unittest.TestCase):
         desired_caps['platformName'] = 'Android'
         desired_caps['platformVersion'] = '10'
         desired_caps['deviceName'] = '192.168.73.103:5555'
-        desired_caps['appPackage'] = 'protect.budgetwatch'
+        # desired_caps['appPackage'] = 'protect.budgetwatch'
         desired_caps['appActivity'] = '.MainActivity'
         desired_caps['autoGrantPermissions'] = 'true'
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
@@ -135,6 +135,10 @@ class MyTestCase(unittest.TestCase):
         quality = self.driver.find_element(AppiumBy.XPATH, "//android.widget.CheckedTextView[contains(@text, '0')]")
         quality.click()
         time.sleep(2)
+
+    def test_keycode(self):
+        self.driver.press_keycode(176)
+        time.sleep(20)
 
     def tearDown(self) -> None:
         self.driver.quit()
