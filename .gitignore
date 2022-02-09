@@ -255,3 +255,5 @@ cython_debug/
 *.pyc
 *.mp3
 *.html
+
+*.pytest_cache*
