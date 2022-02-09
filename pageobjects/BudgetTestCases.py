@@ -1,4 +1,6 @@
 import unittest
+from datetime import date
+
 from MainPage import MainPage
 from BudgetPage import BudgetPage
 from AddBudgetPage import AddBudgetPage
@@ -89,6 +91,19 @@ class MyTestCase(unittest.TestCase):
         add_page.click_edit_icon()
         add_page.click_delete_icon()
         self.assertIn(TestData.budget_empty_list, budget_page.get_emptylist_msg())
+
+    def test_set_calendar(self):
+        today = date.today()
+        d1 = today.strftime("%d")
+        m1 = today.strftime("%m")
+        y1 = today.strftime("%y")
+
+        main_page = MainPage(self.driver)
+        main_page.click_budget()
+        budget_page = BudgetPage(self.driver)
+        budget_page.set_calendar()
+        result = TestData.date_result + m1[1] + "/" + d1[1] + "/" + y1
+         self.assertEqual(result, budget_page.get_text_date())
 
 
 if __name__ == '__main__':

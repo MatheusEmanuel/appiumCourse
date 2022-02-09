@@ -6,3 +6,4 @@ class TestData(object):
     msg_budget_value_empty= "Budget value is empty"
     msg_budget_type_empty = "Budget type is empty"
     budget_empty_list = "You don't have any budgets at the moment. Click the + (plus) button up top "
+    date_result = '2/2/22 ~ '
