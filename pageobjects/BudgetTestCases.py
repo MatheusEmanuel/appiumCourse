@@ -103,7 +103,7 @@ class MyTestCase(unittest.TestCase):
         budget_page = BudgetPage(self.driver)
         budget_page.set_calendar()
         result = TestData.date_result + m1[1] + "/" + d1[1] + "/" + y1
-         self.assertEqual(result, budget_page.get_text_date())
+        self.assertEqual(result, budget_page.get_text_date())
 
 
 if __name__ == '__main__':
