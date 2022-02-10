@@ -8,7 +8,7 @@ from appium import webdriver
 from Data import TestData
 import time
 
-#pytest -v pageobjects/BudgetTestCases.py --html=report.html
+#pytest -v pageobjectsss/BudgetTestCases.py --html=report.html
 class MyTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -25,8 +25,6 @@ class MyTestCase(unittest.TestCase):
         budget_page = BudgetPage(self.driver)
         budget_page.click_add()
         add_page = AddBudgetPage(self.driver)
-        self.driver.implicitly_wait(20)
-        time.sleep(5)
         add_page.type_budget_type(TestData.budget_type)
         add_page.type_budget_value(TestData.budget_value)
         add_page.click_save_button()
@@ -102,7 +100,7 @@ class MyTestCase(unittest.TestCase):
         main_page.click_budget()
         budget_page = BudgetPage(self.driver)
         budget_page.set_calendar()
-        result = TestData.date_result + m1[1] + "/" + d1[1] + "/" + y1
+        result = TestData.date_result + m1[1] + "/" + d1 + "/" + y1
         self.assertEqual(result, budget_page.get_text_date())
 
 

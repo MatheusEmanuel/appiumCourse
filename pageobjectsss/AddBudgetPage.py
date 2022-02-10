@@ -1,3 +1,4 @@
+import time
 from appium.webdriver.common.appiumby import AppiumBy
 from BasePage import BasePage
 
